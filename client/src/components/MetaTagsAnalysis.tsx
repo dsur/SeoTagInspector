@@ -38,19 +38,19 @@ export default function MetaTagsAnalysis({ metaTags }: MetaTagsAnalysisProps) {
     switch (status) {
       case 'good':
         return (
-          <div className="px-2 py-1 rounded text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400">
+          <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400">
             Good
           </div>
         );
       case 'improve':
         return (
-          <div className="px-2 py-1 rounded text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400">
+          <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-400">
             Improve
           </div>
         );
       case 'missing':
         return (
-          <div className="px-2 py-1 rounded text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400">
+          <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400">
             Missing
           </div>
         );
@@ -62,25 +62,25 @@ export default function MetaTagsAnalysis({ metaTags }: MetaTagsAnalysisProps) {
   // Helper to render a tag
   const renderTag = (tag: Tag, tagName: string, html?: string) => {
     return (
-      <div className="border-b border-gray-200 dark:border-gray-700 py-3">
+      <div className="border-b border-gray-200 dark:border-gray-700 py-2 sm:py-3">
         <div className="flex justify-between items-start mb-1">
-          <div className="font-medium">{tagName}</div>
+          <div className="font-medium text-sm sm:text-base truncate mr-2">{tagName}</div>
           {renderStatusBadge(tag.status)}
         </div>
         {tag.content && (
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono overflow-hidden text-ellipsis block">
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1.5 sm:mb-2">
+            <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs sm:text-sm font-mono overflow-hidden text-ellipsis block whitespace-normal break-all">
               {html || tag.content}
             </code>
           </div>
         )}
         {tag.status === 'missing' && (
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1.5 sm:mb-2">
             No {tagName} found
           </div>
         )}
         {tag.recommendation && (
-          <div className="text-sm text-gray-500 dark:text-gray-400">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
             {tag.recommendation}
           </div>
         )}
@@ -89,12 +89,12 @@ export default function MetaTagsAnalysis({ metaTags }: MetaTagsAnalysisProps) {
   };
   
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-      <h2 className="text-xl font-semibold mb-4">Meta Tags Analysis</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+      <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Meta Tags Analysis</h2>
       
       {/* Essential Meta Tags */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Essential Tags</h3>
+      <div className="mb-5 sm:mb-6">
+        <h3 className="text-base sm:text-lg font-medium mb-2 sm:mb-3 text-gray-800 dark:text-gray-200">Essential Tags</h3>
         
         {renderTag(metaTags.title, 'Title', `<title>${metaTags.title.content}</title>`)}
         {renderTag(metaTags.description, 'Meta Description', `<meta name="description" content="${metaTags.description.content}">`)}
@@ -103,18 +103,21 @@ export default function MetaTagsAnalysis({ metaTags }: MetaTagsAnalysisProps) {
       </div>
       
       {/* Social Media Tags Accordion */}
-      <div className="mb-6">
+      <div className="mb-5 sm:mb-6">
         <button 
-          className="flex justify-between items-center w-full text-left text-lg font-medium mb-3 text-gray-800 dark:text-gray-200 focus:outline-none" 
+          className="flex justify-between items-center w-full text-left text-base sm:text-lg font-medium mb-2 sm:mb-3 text-gray-800 dark:text-gray-200 focus:outline-none" 
           onClick={() => setIsSocialOpen(!isSocialOpen)}
+          aria-expanded={isSocialOpen}
+          aria-controls="social-media-tags"
         >
           <span>Social Media Tags</span>
           <ChevronDown 
-            className={`h-5 w-5 transform transition-transform duration-200 ${isSocialOpen ? 'rotate-180' : ''}`} 
+            className={`h-4 w-4 sm:h-5 sm:w-5 transform transition-transform duration-200 ${isSocialOpen ? 'rotate-180' : ''}`} 
           />
         </button>
         
         <div 
+          id="social-media-tags"
           className={`overflow-hidden transition-all duration-300 ${
             isSocialOpen ? 'max-h-[2000px]' : 'max-h-0'
           }`}
@@ -139,16 +142,19 @@ export default function MetaTagsAnalysis({ metaTags }: MetaTagsAnalysisProps) {
       {/* Technical Tags Accordion */}
       <div>
         <button 
-          className="flex justify-between items-center w-full text-left text-lg font-medium mb-3 text-gray-800 dark:text-gray-200 focus:outline-none" 
+          className="flex justify-between items-center w-full text-left text-base sm:text-lg font-medium mb-2 sm:mb-3 text-gray-800 dark:text-gray-200 focus:outline-none" 
           onClick={() => setIsTechnicalOpen(!isTechnicalOpen)}
+          aria-expanded={isTechnicalOpen}
+          aria-controls="technical-tags"
         >
           <span>Technical Tags</span>
           <ChevronDown 
-            className={`h-5 w-5 transform transition-transform duration-200 ${isTechnicalOpen ? 'rotate-180' : ''}`} 
+            className={`h-4 w-4 sm:h-5 sm:w-5 transform transition-transform duration-200 ${isTechnicalOpen ? 'rotate-180' : ''}`} 
           />
         </button>
         
         <div 
+          id="technical-tags"
           className={`overflow-hidden transition-all duration-300 ${
             isTechnicalOpen ? 'max-h-[1000px]' : 'max-h-0'
           }`}

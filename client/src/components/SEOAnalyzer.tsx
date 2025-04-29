@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import URLForm from "./URLForm";
 import LoadingState from "./LoadingState";
 import ErrorState from "./ErrorState";
@@ -21,12 +21,32 @@ export default function SEOAnalyzer() {
     },
     onSuccess: (data) => {
       setAnalysisResult(data);
+      // Scroll to results after analysis completes on mobile
+      setTimeout(() => {
+        if (window.innerWidth < 768) {
+          window.scrollTo({
+            top: document.querySelector('.result-container')?.getBoundingClientRect().top || 0 + window.scrollY - 20,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
     }
   });
   
   const handleAnalyze = (url: string) => {
     analyzeMutation.mutate(url);
   };
+  
+  // Handle responsive layout
+  useEffect(() => {
+    const handleResize = () => {
+      // This is just to trigger a re-render on resize
+      // The actual responsive changes are handled by Tailwind classes
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   return (
     <>
@@ -45,15 +65,15 @@ export default function SEOAnalyzer() {
       )}
       
       {analysisResult && !analyzeMutation.isPending && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="result-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {/* Left column: Meta Tag Analysis */}
-          <div className="lg:col-span-1">
+          <div className="md:col-span-1 lg:col-span-1 order-2 md:order-1">
             <WebsiteInfo websiteInfo={analysisResult} />
             <MetaTagsAnalysis metaTags={analysisResult.metaTags} />
           </div>
           
           {/* Right column: Previews */}
-          <div className="lg:col-span-2">
+          <div className="md:col-span-1 lg:col-span-2 order-1 md:order-2">
             <PreviewTabs analysisResult={analysisResult} />
             <RecommendationsSection recommendations={analysisResult.recommendations} />
           </div>

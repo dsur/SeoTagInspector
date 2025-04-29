@@ -55,8 +55,8 @@ export default function URLForm({ onSubmit }: URLFormProps) {
   };
   
   return (
-    <div className="mb-8">
-      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4">
+    <div className="mb-6 sm:mb-8">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <div className="flex-grow relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Globe className="h-5 w-5 text-gray-400" />
@@ -64,17 +64,17 @@ export default function URLForm({ onSubmit }: URLFormProps) {
           <Input
             type="text"
             placeholder="https://example.com"
-            className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-800"
+            className="block w-full pl-10 pr-3 py-2.5 sm:py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-800"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
           {error && (
-            <div className="absolute text-sm text-red-500 mt-1">{error}</div>
+            <div className="absolute text-xs sm:text-sm text-red-500 mt-1">{error}</div>
           )}
         </div>
         <Button 
           type="submit" 
-          className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-2.5 sm:py-3 px-5 sm:px-6 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
         >
           Analyze
         </Button>
