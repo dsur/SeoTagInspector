@@ -108,39 +108,39 @@ export default function GooglePreview({ analysisResult }: GooglePreviewProps) {
   
   return (
     <>
-      <h3 className="text-xl font-semibold mb-6">Google Search Preview</h3>
-      <div className="max-w-2xl mx-auto border border-gray-200 dark:border-gray-700 rounded-lg p-5 bg-white dark:bg-gray-900 shadow-sm">
-        <div className="mb-1 text-xl text-blue-700 dark:text-blue-500 font-medium hover:underline cursor-pointer">
+      <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Google Search Preview</h3>
+      <div className="w-full max-w-xl mx-auto border border-gray-200 dark:border-gray-700 rounded-lg p-3 sm:p-5 bg-white dark:bg-gray-900 shadow-sm">
+        <div className="mb-1 text-base sm:text-xl text-blue-700 dark:text-blue-500 font-medium hover:underline cursor-pointer line-clamp-2">
           {title}
         </div>
-        <div className="text-sm text-green-700 dark:text-green-500 mb-1">
+        <div className="text-xs sm:text-sm text-green-700 dark:text-green-500 mb-1 truncate">
           {displayUrl}
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
           {description}
         </div>
       </div>
       
-      <div className="mt-6 space-y-4">
+      <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
         <div>
-          <h4 className="font-medium mb-1">Title Analysis</h4>
-          <div className={`text-sm ${titleAnalysis.className} p-3`}>
+          <h4 className="text-sm sm:text-base font-medium mb-1">Title Analysis</h4>
+          <div className={`text-xs sm:text-sm ${titleAnalysis.className} p-2 sm:p-3`}>
             <span className="text-gray-800 dark:text-gray-200 font-medium">{titleAnalysis.heading}</span> 
             <span className="text-gray-700 dark:text-gray-300"> {titleAnalysis.content}</span>
           </div>
         </div>
         
         <div>
-          <h4 className="font-medium mb-1">Description Analysis</h4>
-          <div className={`text-sm ${descriptionAnalysis.className} p-3`}>
+          <h4 className="text-sm sm:text-base font-medium mb-1">Description Analysis</h4>
+          <div className={`text-xs sm:text-sm ${descriptionAnalysis.className} p-2 sm:p-3`}>
             <span className="text-gray-800 dark:text-gray-200 font-medium">{descriptionAnalysis.heading}</span> 
             <span className="text-gray-700 dark:text-gray-300"> {descriptionAnalysis.content}</span>
           </div>
         </div>
         
         <div>
-          <h4 className="font-medium mb-1">URL Analysis</h4>
-          <div className={`text-sm ${urlAnalysis.className} p-3`}>
+          <h4 className="text-sm sm:text-base font-medium mb-1">URL Analysis</h4>
+          <div className={`text-xs sm:text-sm ${urlAnalysis.className} p-2 sm:p-3`}>
             <span className="text-gray-800 dark:text-gray-200 font-medium">{urlAnalysis.heading}</span> 
             <span className="text-gray-700 dark:text-gray-300"> {urlAnalysis.content}</span>
           </div>

@@ -14,13 +14,13 @@ export default function RecommendationsSection({ recommendations }: Recommendati
   const renderIcon = (type: 'success' | 'warning' | 'error' | 'info') => {
     switch (type) {
       case 'success':
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />;
       case 'warning':
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />;
+        return <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500" />;
       case 'error':
-        return <XCircle className="h-5 w-5 text-red-500" />;
+        return <XCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />;
       case 'info':
-        return <Info className="h-5 w-5 text-blue-500" />;
+        return <Info className="h-4 w-4 sm:h-5 sm:w-5 text-blue-500" />;
       default:
         return null;
     }
@@ -59,30 +59,30 @@ export default function RecommendationsSection({ recommendations }: Recommendati
   };
   
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-semibold mb-4">SEO Recommendations</h3>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-6">
+      <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">SEO Recommendations</h3>
       
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {recommendations.map((recommendation, index) => (
           <div 
             key={index} 
-            className={`p-4 ${getRecommendationStyle(recommendation.type)}`}
+            className={`p-3 sm:p-4 ${getRecommendationStyle(recommendation.type)}`}
           >
             <div className="flex items-start">
-              <div className="mr-2 mt-0.5">
+              <div className="mr-2 mt-0.5 flex-shrink-0">
                 {renderIcon(recommendation.type)}
               </div>
               <div>
-                <h4 className={`font-medium ${getTitleColor(recommendation.type)}`}>
+                <h4 className={`text-sm sm:text-base font-medium ${getTitleColor(recommendation.type)}`}>
                   {recommendation.title}
                 </h4>
-                <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+                <p className="mt-1 text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                   {recommendation.description}
                 </p>
                 {recommendation.items && recommendation.items.length > 0 && (
-                  <ul className="mt-2 ml-5 list-disc text-sm text-gray-700 dark:text-gray-300">
+                  <ul className="mt-2 ml-4 sm:ml-5 list-disc text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                     {recommendation.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>{item}</li>
+                      <li key={itemIndex} className="ml-1">{item}</li>
                     ))}
                   </ul>
                 )}
